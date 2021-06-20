@@ -23,7 +23,9 @@ class LoginPage extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: 650,
+              // minHeight: 650,
+              minHeight:  MediaQuery.of(context).size.height * 0.4,
+
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -29,13 +29,21 @@ class BotonOk extends StatelessWidget {
       onPressed: this.onPressed,
       child: Container(
         width: double.infinity,
-        height: 55,
+        // height: 55,
+              height:  MediaQuery.of(context).size.height * 0.07,
+
         // padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
 
         child: Center(
           child: Text(
             this.text,
-            style: TextStyle(color: Colors.white, fontSize: 17),
+            style: TextStyle(
+              color: Colors.white, 
+              // fontSize: 17
+              fontSize: MediaQuery.of(context).size.height *.03,
+
+              
+              ),
           ),
         ),
       ),

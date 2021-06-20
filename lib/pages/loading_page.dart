@@ -41,7 +41,7 @@ if (autenticado) {
 print('datos invalidos');
       switch (usuario.rol) {
         case 'USER_ROLE':
-      mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');          
+      // mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');          
   Navigator.pushReplacementNamed(context, 'registerPerson'); 
           
           break;

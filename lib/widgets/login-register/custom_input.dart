@@ -9,7 +9,8 @@ class CustomInput extends StatelessWidget {
       textController; // Nos va a ayudar con el manejo de informacion que vienen en nuestros inputs
   final TextInputType keyboardType; //el tipo de teclado que va a venir
   final bool isPassword;
-
+final Function ontap;
+final bool enableInteractiveSelection;
   const CustomInput(
       {Key key, //
       @required this.icon, // el @required es para indicar que es requerido
@@ -17,7 +18,9 @@ class CustomInput extends StatelessWidget {
       @required this.textController, //
       this.keyboardType =
           TextInputType.text, // estos se les asiga un valor por defecto
-      this.isPassword = false //
+      this.isPassword = false, //
+      this.ontap=null,
+      this.enableInteractiveSelection= true
       })
       : super(key: key);
 
@@ -33,7 +36,7 @@ class CustomInput extends StatelessWidget {
           left: 5,
           bottom: 5,
           right: 20), //Esto es para que no se pegue al finalde mi margen
-
+      
       margin: EdgeInsets.only(bottom: 20), //para hacer una separacion
       decoration: BoxDecoration(
           color: Colors.white,
@@ -45,10 +48,13 @@ class CustomInput extends StatelessWidget {
                 blurRadius: 5)
           ]),
       child: TextField(
+        enableInteractiveSelection: this.enableInteractiveSelection,
         controller: this.textController,
         autocorrect: false,
         keyboardType: this.keyboardType, //Va a ser de tipo de correo
         obscureText: this.isPassword,
+
+        onTap: this.ontap ,
 
         decoration: InputDecoration(
             prefixIcon: Icon(this.icon),

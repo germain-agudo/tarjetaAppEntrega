@@ -15,8 +15,9 @@ class LogoGeneral extends StatelessWidget {
         margin: EdgeInsets.only(top: 40),
 
         //El contenido va a estar restringido con el
-        // width: 400,
-        width: MediaQuery.of(context).size.height * 1.6,
+        width: 400,
+        // height: 500,
+        // width: MediaQuery.of(context).size.height * 1.6,
         child: Column(
           children: <Widget>[
             Image(
@@ -25,7 +26,7 @@ class LogoGeneral extends StatelessWidget {
             ),
             Text(
               this.tiutlo,
-              style: TextStyle(fontSize: 35),
+              style: TextStyle(fontSize: 30),
             )
           ],
         ),

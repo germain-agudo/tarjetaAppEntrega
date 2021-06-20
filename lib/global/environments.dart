@@ -1,5 +1,5 @@
 class Environment{
 
-  static String apiUrl = 'http://injeo-rest-server.herokuapp.com/api';
+  static String apiUrl = 'https://injeo-rest-server.herokuapp.com/api';
 
 }
