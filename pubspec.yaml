@@ -35,6 +35,8 @@ dependencies:
   provider: ^5.0.0
   http: ^0.13.3
   flutter_secure_storage: ^4.2.0
+  intl: ^0.17.0
+  page_view_indicators: ^2.0.0
 
 dev_dependencies:
   flutter_test:

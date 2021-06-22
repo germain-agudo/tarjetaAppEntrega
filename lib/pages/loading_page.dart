@@ -43,15 +43,19 @@ print('datos invalidos');
         case 'USER_ROLE':
       // mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');          
   Navigator.pushReplacementNamed(context, 'registerPerson'); 
+  // Navigator.pushReplacementNamed(context, 'registerExternal'); 
+
           
           break;
         case 'ADMIN_ROLE':
-      mostrarAlerta(context, 'admin', 'Para mejorar su experiencia es necesario que ');          
+  Navigator.pushReplacementNamed(context, 'registerPerson'); 
+
+      // mostrarAlerta(context, 'admin', 'Para mejorar su experiencia es necesario que ');          
           
           break;
         case 'EXTERNO_ROLE':
 
-      mostrarAlerta(context, 'externo', 'Para mejorar su experiencia es necesario que ');          
+      // mostrarAlerta(context, 'externo', 'Para mejorar su experiencia es necesario que ');          
   Navigator.pushReplacementNamed(context, 'registerExternal'); 
         
           break;

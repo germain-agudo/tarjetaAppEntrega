@@ -142,7 +142,7 @@ class __FormState extends State<_Form> {
           BotonOk(
             //
             text: 'crear cuenta',
-            color: Colors.red[400],
+            color: (authService.autenticando) ? Colors.blueGrey : Colors.red,
             onPressed: 
               
             

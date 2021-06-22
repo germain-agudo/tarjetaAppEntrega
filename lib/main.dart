@@ -1,6 +1,7 @@
 import 'package:app_tarjeta/routes/routes.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
 import 'package:app_tarjeta/services/components/role_service.dart';
+import 'package:app_tarjeta/services/users/person_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       providers: [
          ChangeNotifierProvider( create: (_) => AuthService(), ),
          ChangeNotifierProvider( create: (_) => RoleService(), ),
+         ChangeNotifierProvider( create: (_) => PersonService(), ),
       ],
       child: MaterialApp(
 //ESto es para cambiar el idioma 
@@ -27,10 +29,15 @@ class MyApp extends StatelessWidget {
 
     supportedLocales: [
     const Locale('en', 'US'), // English, no country code
-    const Locale('es', 'ES'), // Spanish, no country code
+    const Locale('es', 'MX'), // Spanish, no country code
   ],
-///
 
+  
+  
+///
+ theme: ThemeData(
+    primarySwatch: Colors.red,
+  ),
         title: 'Tarjeta Joven',
         initialRoute: 'loading',
         routes: appRoutes,

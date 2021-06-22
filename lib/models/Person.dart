@@ -38,7 +38,7 @@ class Persona {
     String fechaNacimiento;
     String municipio;
     String region;
-    Usuario usuarioId;
+    String usuarioId;
     DateTime fechaRegistro;
 
     factory Persona.fromJson(Map<String, dynamic> json) => Persona(
@@ -53,7 +53,7 @@ class Persona {
         fechaNacimiento: json["fecha_nacimiento"],
         municipio: json["municipio"],
         region: json["region"],
-        usuarioId: Usuario.fromJson(json["usuario_id"]),
+        usuarioId:json["usuario_id"],
         fechaRegistro: DateTime.parse(json["fecha_registro"]),
     );
 
@@ -69,7 +69,7 @@ class Persona {
         "fecha_nacimiento": fechaNacimiento,
         "municipio": municipio,
         "region": region,
-        "usuario_id": usuarioId.toJson(),
+        "usuario_id": usuarioId,
         "fecha_registro": fechaRegistro.toIso8601String(),
     };
 }

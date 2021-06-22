@@ -12,7 +12,7 @@ class BotonOk extends StatelessWidget {
     Key key, //
     @required this.text, //
     @required this.onPressed, //
-    this.color = Colors.blue,
+    this.color = Colors.red,
   }) : super(key: key);
 
   @override
@@ -29,8 +29,8 @@ class BotonOk extends StatelessWidget {
       onPressed: this.onPressed,
       child: Container(
         width: double.infinity,
-        // height: 55,
-              height:  MediaQuery.of(context).size.height * 0.07,
+        height: 55,
+              // height:  MediaQuery.of(context).size.width * 0.07,
 
         // padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
 
@@ -39,8 +39,8 @@ class BotonOk extends StatelessWidget {
             this.text,
             style: TextStyle(
               color: Colors.white, 
-              // fontSize: 17
-              fontSize: MediaQuery.of(context).size.height *.03,
+              fontSize: 17
+              // fontSize: MediaQuery.of(context).size.width *.03,
 
               
               ),
