@@ -29,10 +29,12 @@ class RegisterPage extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(
               // minHeight: 650,
-              minHeight:  MediaQuery.of(context).size.height * 0.4,
+              // minHeight:  MediaQuery.of(context).size.height * 0.4,
+              minHeight:  MediaQuery.of(context).size.height * 0.9,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 LogoGeneral(
                   tiutlo: 'Register',
@@ -138,7 +140,8 @@ class __FormState extends State<_Form> {
             isPassword: true,
           ),
 
-          // Todo: Crear boton
+          SizedBox( height: 30.0,  ),
+        
           BotonOk(
             //
             text: 'crear cuenta',

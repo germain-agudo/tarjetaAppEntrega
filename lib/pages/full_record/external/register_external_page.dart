@@ -1,13 +1,13 @@
 import 'package:app_tarjeta/global/components.dart';
+import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
 
 import 'package:app_tarjeta/pages/full_record/s.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
-import 'package:app_tarjeta/services/components/role_service.dart';
+import 'package:app_tarjeta/services/users/external_service.dart';
 import 'package:app_tarjeta/widgets/login-register/boton_ok.dart';
 
 import 'package:app_tarjeta/widgets/login-register/custom_input.dart';
 
-import 'package:app_tarjeta/widgets/logo_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -67,7 +67,7 @@ class _RegisterExternalPageState extends State<RegisterExternalPage> {
           child: ConstrainedBox(
             constraints: BoxConstraints(
               // minHeight: 400,
-              minHeight:  MediaQuery.of(context).size.height * 0.9,
+              minHeight:  MediaQuery.of(context).size.height * 0.8,
             ),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -109,11 +109,30 @@ final     nombreCtrl = TextEditingController();
   final   rfcCtrl = TextEditingController();
   final direccionCtrl = TextEditingController();
 
+ExternalService externalService;
+AuthService authService;
+
+
+@override
+
+  void initState() {
+    
+    super.initState();
+  this.authService= Provider.of<AuthService>(context, listen: false);
+  this.externalService = Provider.of<ExternalService>(context, listen: false);
+
+ 
+ 
+  }
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    final RoleService roleService = Provider.of<RoleService>(context, listen: true); //que este pendiente de todos los cambios que emita provider
-    final authService = Provider.of<AuthService>(context, listen: true);
 
     // final authService = Provider.of<AuthService>(context);
     // final socketService = Provider.of<SocketService>(context);
@@ -148,7 +167,7 @@ final     nombreCtrl = TextEditingController();
             placeholder: 'direccion',
             keyboardType: TextInputType.text,
             textController: direccionCtrl,
-            isPassword: true,
+            // isPassword: true,
           ),
     Container(
                   child: SizedBox(
@@ -159,10 +178,26 @@ final     nombreCtrl = TextEditingController();
           BotonOk(
             //
             text: 'Enviar',
-            color: Colors.red[400],
-            onPressed: (){
+            color: (this.externalService.autenticando)? Colors.blue:Colors.red,
+            onPressed:
+            (this.externalService.autenticando)
+                                ? null 
+                                : () async{
+                                  final registroOk = await externalService.register(
+                                    nombreCtrl.text, 
+                                    rfcCtrl.text, 
+                                    direccionCtrl.text,
+                                    authService.usuario.id
+                                    );
+                                  if (registroOk==true) {
+                                      Navigator.pushReplacementNamed(context, 'botones');
+                                  } else {
+                                    mostrarAlerta(context, 'Registro incorrecto', registroOk);
+                                  }
 
-            }
+                                }
+
+            
               
             
 

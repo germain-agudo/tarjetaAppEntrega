@@ -2,6 +2,7 @@
 import 'package:app_tarjeta/pages/full_record/external/register_external_page.dart';
 import 'package:app_tarjeta/pages/full_record/person/register_person_page.dart';
 import 'package:app_tarjeta/pages/menu_principal/botones_page.dart';
+import 'package:app_tarjeta/pages/noticia/agregar_noticia_page.dart';
 import 'package:app_tarjeta/pages/roles_page.dart';
 import 'package:app_tarjeta/pages/scroll_home.dart';
 import 'package:flutter/material.dart';
@@ -20,5 +21,6 @@ final Map<String, Widget Function(BuildContext)>appRoutes={
   'roles':( _ ) =>RolePage(),
   'registerExternal':( _ ) =>RegisterExternalPage(),
   'registerPerson':( _ ) =>RegisterPersonPage(),
+  'noticia':( _ ) =>AgregarNoticiaPage(),
 
 };

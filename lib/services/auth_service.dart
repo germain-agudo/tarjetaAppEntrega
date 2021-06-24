@@ -73,11 +73,11 @@ set autenticando(bool valor) {
 
 // Para El registro
 
-  Future register(String numero_telefonico, String correo, String password,String rol) async {
+  Future register(String numeroTelefonico, String correo, String password,String rol) async {
     this.autenticando = true; // verificar los listeners
 
     final data = {
-      'numero_telefonico': numero_telefonico,
+      'numero_telefonico': numeroTelefonico,
       'correo': correo,
       'password': password,
       'rol':rol

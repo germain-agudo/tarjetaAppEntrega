@@ -17,18 +17,16 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
         // backgroundColor: Color(0xffF2F2F2),
         backgroundColor: Components.generalBackgroundColor,
-
-  
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(
               // minHeight: 650,
-              minHeight:  MediaQuery.of(context).size.height * 0.4,
-
+              minHeight: MediaQuery.of(context).size.height * 0.9,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 LogoGeneral(
                   tiutlo: 'Login',
@@ -39,7 +37,6 @@ class LoginPage extends StatelessWidget {
                   titulo: '¿No tienes cuenta?',
                   subTitulo: 'Crea una ahora!',
                 ),
-                
                 Text(
                   'Terminos y condiciones de uso',
                   style: TextStyle(fontWeight: FontWeight.w200),
@@ -91,40 +88,78 @@ class __FormState extends State<_Form> {
             textController: passCtrl,
             isPassword: true,
           ),
-          SizedBox( height: 30.0,  ),
+          SizedBox(
+            height: 30.0,
+          ),
 
-          // TODO: Crear boton
           BotonOk(
-              // color: Colors.red[400],
-              //
-              color: (authService.autenticando) ? Colors.blueGrey : Colors.red[400],
-              text: 'Ingrese',
-              onPressed: (authService.autenticando)
-              ? null
-              //      : (){
-              //        FocusScope.of(context).unfocus(); // va a quitar el focus es decir el tecado
-              //   authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
-              // }
-              // //  (authService.autenticando)
-              // //     ? null
-                  : () async {
+            // color: Colors.red[400],
+            //
+            color: (authService.autenticando) ? Colors.blueGrey : Colors.red[400],
+            text: 'Ingrese',
+            onPressed: (authService.autenticando)
+                ? null
+                //      : (){
+                //        FocusScope.of(context).unfocus(); // va a quitar el focus es decir el tecado
+                //   authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
+                // }
+                // //  (authService.autenticando)
+                // //     ? null
+                : () async {
+                    
+                    
+                    FocusScope.of(context).unfocus(); // va a quitar el focus es decir el tecado
+                    final loginOk = await authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
 
-                      FocusScope.of(context)
-                          .unfocus(); // va a quitar el focus es decir el tecado
-                      final loginOk = await authService.login(
-                          emailCtrl.text.trim(), passCtrl.text.trim());
-                      if (loginOk) {
-                        //TODO:Navegar a otra pantalla
-                        // socketService.connect();
+                    
+
+                    if (loginOk) {
+                      final String rol = authService.usuario.rol;
+                      final bool datosCompletos = authService.usuario.datosCompletos;
+                      // socketService.connect();
+                      if (datosCompletos) {
                         Navigator.pushReplacementNamed(context, 'botones');
-                        print('Todo ok');
                       } else {
-                        //Mostrar Alerta
-                        mostrarAlerta(context, 'Login incorrecto',
-                            'Revise sus credenciales nuevamente');
+                        switch (rol) {
+                          case 'USER_ROLE':
+                            // mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');
+                            Navigator.pushReplacementNamed(context, 'registerPerson');
+                            // Navigator.pushReplacementNamed(context, 'registerExternal');
+
+                            break;
+                          case 'ADMIN_ROLE':
+                            Navigator.pushReplacementNamed(context, 'registerPerson');
+
+                            // mostrarAlerta(context, 'admin', 'Para mejorar su experiencia es necesario que ');
+
+                            break;
+                          case 'EXTERNO_ROLE':
+
+                            // mostrarAlerta(context, 'externo', 'Para mejorar su experiencia es necesario que ');
+                            Navigator.pushReplacementNamed(context, 'registerExternal');
+
+                            break;
+
+                          default:
+                          // mostrarAlerta(context, usuario.rol, 'datos incompletos');
+
+                        }
+
+                        // if (rol=='EXTERNO_ROLE') {
+                        //  Navigator.pushReplacementNamed(context, 'registerExternal');
+                        // } else if(){
+                        // }else{
+
+                        // }
+
                       }
-                    },
-              )
+                      // print('Todo ok');
+                    } else {
+                      //Mostrar Alerta
+                      mostrarAlerta(context, 'Login incorrecto', 'Revise sus credenciales nuevamente');
+                    }
+                  },
+          )
         ],
       ),
     );

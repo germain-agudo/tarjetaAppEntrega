@@ -1,5 +1,4 @@
 import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
-import 'package:app_tarjeta/models/response/PersonaResponse.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
 import 'package:app_tarjeta/services/users/person_service.dart';
 import 'package:flutter/material.dart';

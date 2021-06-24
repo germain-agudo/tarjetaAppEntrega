@@ -1,6 +1,6 @@
 
-import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
-import 'package:app_tarjeta/pages/menu_principal/botones_page.dart';
+// import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
+import 'package:app_tarjeta/pages/noticia/noticias_page.dart';
 import 'package:app_tarjeta/pages/scroll_home.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ if (autenticado) {
 
   if (!usuario.datosCompletos) {
 
-print('datos invalidos');
+// print('datos invalidos');
       switch (usuario.rol) {
         case 'USER_ROLE':
       // mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');          
@@ -78,7 +78,8 @@ Navigator.pushReplacement(
   Navigator.pushReplacement(
     context, 
     PageRouteBuilder(
-      pageBuilder:( _,__,___)=>BotonesPage(),
+      // pageBuilder:( _,__,___)=>BotonesPage(),
+      pageBuilder:( _,__,___)=>NoticiasPage(),
       transitionDuration: Duration(milliseconds: 0)
     )
   );
