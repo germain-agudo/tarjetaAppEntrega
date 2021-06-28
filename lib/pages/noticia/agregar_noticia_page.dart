@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:app_tarjeta/models/Noticia.dart';
-import 'package:app_tarjeta/services/noticia_service.dart';
+import 'package:app_tarjeta/services/provider.dart';
+// import 'package:app_tarjeta/services/noticia_service.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:app_tarjeta/utils/utils.dart' as utils;
 class AgregarNoticiaPage extends StatefulWidget {
   // const NoticiaPage({ Key? key }) : super(key: key);
@@ -10,26 +14,46 @@ class AgregarNoticiaPage extends StatefulWidget {
 
 class _AgregarNoticiaPageState extends State<AgregarNoticiaPage> {
 final formkeyAgregarNoticia = GlobalKey<FormState>();
+final scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+
+NoticiasBloc noticiasBloc;
+
   Noticia noticia = new Noticia();
-final noticiaService = new NoticiaService();
-  
+// final noticiaService = new NoticiaService();
+  bool _guardando = false;
+  File foto;
 
   @override
+
+
   Widget build(BuildContext context) {
+
+    noticiasBloc = Providers.noticiasBloc(context);
+
+  final Noticia noticiaData = ModalRoute.of(context).settings.arguments;
+      if ( noticiaData != null ) {
+        noticia = noticiaData;
+      }
+
+//  if (_guardando) {
+//      return Center( child:  CircularProgressIndicator(),);
+
+//   }
     return Scaffold(
+      key:  scaffoldKey,
       appBar: AppBar(
         title: Text('Noticia'),
         backgroundColor: Colors.red[400],
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.photo_size_select_actual ),
-            onPressed: (){
-            }, 
+            onPressed:(){ _seleccionarFoto();}, 
           ),
           IconButton(
             icon: Icon(Icons.camera_alt ),
-            onPressed: (){
-            }, 
+            onPressed: _tomarFoto, 
           ),
         ],
       ),
@@ -37,12 +61,16 @@ final noticiaService = new NoticiaService();
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
 
-        child: Container(
+     
+        child: (_guardando)?  Center( child:  CircularProgressIndicator(),):
+        
+        Container(
           padding: EdgeInsets.all(15.0),
           child: Form(
             key:  formkeyAgregarNoticia,
             child: Column(
               children: <Widget>[
+                _mostrarFoto(),
                 _crearTitulo(),
                 _crearSubtitulo(),
                 _crearDescripcion(),
@@ -104,7 +132,7 @@ Widget _crearSubtitulo(){
   );
 }
 
-Widget _crearDescripcion(){
+Widget _crearDescripcion(){ 
   return TextFormField(
     initialValue: noticia.descripcion,
 
@@ -126,8 +154,12 @@ Widget _crearDescripcion(){
 }
 
 Widget _crearBoton(){
+
+ 
+
+
   return ElevatedButton.icon(
-    onPressed: _submit, 
+    onPressed: (_guardando) ?null : _submit, 
     icon: Icon(Icons.save), 
     label: Text('Save'),
     style: ButtonStyle(
@@ -158,9 +190,9 @@ Widget _crearBoton(){
 
 
 
-void _submit(){
+void _submit()async{
 
-  
+ String id='';
                         // estado actual del formulario
   if (!formkeyAgregarNoticia.currentState.validate() ) return;
 
@@ -169,20 +201,120 @@ formkeyAgregarNoticia.currentState.save();
 
 
 
-    // Cuando el formulario es valido
-print('Todo Ok');
 
-  
-print(noticia.titulo);
-print(noticia.subtitulo);
-print(noticia.descripcion);
 
-noticiaService.crearNoticia(
-noticia.titulo,
-noticia.subtitulo,
-noticia.descripcion,
 
-);
+
+if ( noticia.id ==null) {
+setState(() {_guardando = true;});
+
+
+
+id = await  noticiasBloc.crearNoticia(noticia.titulo, noticia.subtitulo, noticia.descripcion,);
+
+
+} else {
+noticiasBloc.editarNoticia(noticia.titulo, noticia.subtitulo, noticia.descripcion, noticia.id);
 
 }
+
+
+
+    // Cuando el formulario es valido
+setState(() {_guardando = true;});
+
+
+if ( foto != null) {
+  print( await  noticiasBloc.subirImagen(foto,(noticia.id==null)?id : noticia.id));
+}
+
+// setState(() {_guardando = false;});
+
+mostrarSnackbar('Registro Guardardo');
+Navigator.pop(context);
+}
+
+ void mostrarSnackbar( String mensaje){
+
+      final snackbar = SnackBar(
+        content: Text(mensaje),
+        duration: Duration( milliseconds:  1500 ),
+        );
+    // scaffoldKey.currentState.sh
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+  }
+
+
+Widget _mostrarFoto(){
+  if ( noticia.img !=null) {
+    return FadeInImage(
+      placeholder: AssetImage('assets/jar-loading.gif'), 
+      image: NetworkImage(noticia.img),
+      height: 300.0,
+      fit: BoxFit.contain,
+      
+      );
+    
+  }else{
+        
+    // // Si foto tiene el path con ifnromacion la muestre y si no ??? muestre la imagen estatica,
+    // return Image(image: AssetImage(foto?.path ??'assets/no-image.png'),
+    // height:300.0,    fit: BoxFit.cover,   );
+
+     if( foto != null ){
+        return Image.file(
+          foto,
+          fit: BoxFit.cover,
+          height: 300.0,
+          // width: 500,
+        );
+      }
+      return Image.asset('assets/no-image.png');
+
+  }
+}
+
+_seleccionarFoto()async{
+_procesarImage(ImageSource.gallery);
+
+
+}
+
+_tomarFoto()async{
+_procesarImage(ImageSource.camera);
+
+}
+
+
+_procesarImage( ImageSource origin) async{
+ final _picker = ImagePicker();
+
+
+    final pickedFile = await _picker.getImage(
+      source: origin,
+      maxHeight: 720, maxWidth: 720
+
+    );
+
+    if (pickedFile==null) {}
+    else
+    foto = File(pickedFile?.path);
+ 
+    if (foto != null) {
+      noticia.img = null;
+    }
+ 
+    setState(() {});
+
+
+}
+
+
+
+
+
+
+
+
 }

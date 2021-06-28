@@ -1,5 +1,7 @@
 
 // import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
+import 'package:app_tarjeta/pages/menu_principal/botones_page.dart';
+import 'package:app_tarjeta/pages/menu_principal/segundo.dart';
 import 'package:app_tarjeta/pages/noticia/noticias_page.dart';
 import 'package:app_tarjeta/pages/scroll_home.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
@@ -17,7 +19,17 @@ class LoadingPage extends StatelessWidget {
         future: checkLoginState(context),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 return Center(
-          child: Text('LoadingPage'),
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children:<Widget> [
+              Text('LoadingPage...'),
+              SizedBox(height: 10.0,),
+                 CircularProgressIndicator()
+
+            ],
+          ),
         );
           },
       
@@ -79,6 +91,7 @@ Navigator.pushReplacement(
     context, 
     PageRouteBuilder(
       // pageBuilder:( _,__,___)=>BotonesPage(),
+      // pageBuilder:( _,__,___)=>SegundoPage(),
       pageBuilder:( _,__,___)=>NoticiasPage(),
       transitionDuration: Duration(milliseconds: 0)
     )

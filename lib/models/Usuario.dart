@@ -10,7 +10,7 @@ String usuarioToJson(Usuario data) => json.encode(data.toJson());
 
 class Usuario {
     Usuario({
-        this.estado,
+        // this.estado,
         this.datosCompletos,
         this.id,
         this.correo,
@@ -22,7 +22,7 @@ class Usuario {
         this.img,
     });
 
-    bool estado;
+    // bool estado;
     bool datosCompletos;
     String id;
     String correo;
@@ -34,20 +34,20 @@ class Usuario {
     String img;
 
     factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
-        estado: json["estado"],
+        // estado: json["estado"],
         datosCompletos: json["datos_completos"],
         id: json["_id"],
         correo: json["correo"],
         rol: json["rol"],
         numeroTelefonico: json["numero_telefonico"],
-        fechaRegistro: DateTime.parse(json["fecha_registro"]),
-        fechaEliminacion:  DateTime.parse(json["fecha_registro"]),
+        fechaRegistro:  json["fecha_eliminacion"]==null ?null : DateTime.parse(json["fecha_eliminacion"]), 
+        fechaEliminacion: json["fecha_eliminacion"]==null ?null : DateTime.parse(json["fecha_eliminacion"]),
         userName: json["user_name"],
         img: json["img"],
     );
 
     Map<String, dynamic> toJson() => {
-        "estado": estado,
+        // "estado": estado,
         "datos_completos": datosCompletos,
         "_id": id,
         "correo": correo,

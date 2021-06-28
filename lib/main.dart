@@ -2,6 +2,7 @@ import 'package:app_tarjeta/global/components.dart';
 import 'package:app_tarjeta/routes/routes.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
 import 'package:app_tarjeta/services/components/role_service.dart';
+import 'package:app_tarjeta/services/provider.dart';
 import 'package:app_tarjeta/services/users/external_service.dart';
 import 'package:app_tarjeta/services/users/person_service.dart';
 import 'package:flutter/material.dart';
@@ -20,35 +21,39 @@ class MyApp extends StatelessWidget {
          ChangeNotifierProvider( create: (_) => RoleService(), ),
          ChangeNotifierProvider( create: (_) => PersonService(), ),
          ChangeNotifierProvider( create: (_) => ExternalService(), ),
+         
+
       ],
-      child: MaterialApp(
-//ESto es para cambiar el idioma 
-        localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    
-  ],
-
-    supportedLocales: [
-    const Locale('en', 'US'), // English, no country code
-    const Locale('es', 'MX'), // Spanish, no country code
-  ],
-
-  
-  
-///
- theme: ThemeData(
-    primarySwatch: Colors.red,
-    // backgroundColor: Colors.red[400]
-    appBarTheme: AppBarTheme(
-      backgroundColor: Components.mainThemeColor
-    )
-    
-  ),
-        title: 'Tarjeta Joven',
-        initialRoute: 'loading',
-        routes: appRoutes,
+      child: Providers(
+        child: MaterialApp(
+      //ESto es para cambiar el idioma 
+          localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          
+        ],
+      
+          supportedLocales: [
+          const Locale('en', 'US'), // English, no country code
+          const Locale('es', 'MX'), // Spanish, no country code
+        ],
+      
+        
+        
+      ///
+       theme: ThemeData(
+          primarySwatch: Colors.red,
+          // backgroundColor: Colors.red[400]
+          appBarTheme: AppBarTheme(
+        backgroundColor: Components.mainThemeColor
+          )
+          
+        ),
+          title: 'Tarjeta Joven',
+          initialRoute: 'loading',
+          routes: appRoutes,
+        ),
       ),
     );
   }
