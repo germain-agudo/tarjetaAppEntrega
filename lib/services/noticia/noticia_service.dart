@@ -56,7 +56,7 @@ if (resp.statusCode==201) {
 
 
 
-  Future<bool> editarNoticia( String titulo,  String subtitulo,  String descripcion, producto_id ) async{
+  Future<bool> editarNoticia( String titulo,  String subtitulo,  String descripcion, String producto_id ) async{
 
 final data ={
   'titulo': titulo,

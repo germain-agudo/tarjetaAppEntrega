@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:app_tarjeta/models/Noticia.dart';
-import 'package:app_tarjeta/services/noticia_service.dart';
+import 'package:app_tarjeta/services/noticia/noticia_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NoticiasBloc {
@@ -21,7 +21,7 @@ void cargarNoticias()async{
 _noticiasController.sink.add(noticias);
 }
 
-//  Agregar un nuevo producto
+//  Agregar 
 Future crearNoticia(String titulo,  String subtitulo,  String descripcion, ){
 _cargandoController.sink.add(true);
 final id =  _noticiaService.crearNoticia(titulo, subtitulo, descripcion);
@@ -40,7 +40,7 @@ return imgUrl;
 }
 
 
-//  Editar un nuevo producto
+//  Editar 
 void editarNoticia(String titulo,  String subtitulo,  String descripcion, String id)async{
 _cargandoController.sink.add(true);
 await _noticiaService.editarNoticia(titulo, subtitulo, descripcion, id);
@@ -48,7 +48,7 @@ _cargandoController.sink.add(false);
 }
 
 
-//  Eliminar un nuevo producto
+//  Eliminar 
 Future borrarNoticia( String id)async{
 await _noticiaService.borrarNoticia(id);
 }

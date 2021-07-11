@@ -18,7 +18,7 @@ class BotonesPage extends StatelessWidget {
       drawer: DrawerWidger(),
       appBar: AppBar(
         title: Text(
-          (usuario.userName == null) ? 'hola' : usuario.userName,
+          (usuario.userName == null) ? '' : usuario.userName,
           style: TextStyle(color: Colors.black87),
         ),
         elevation: 1,
@@ -47,12 +47,16 @@ class BotonesPage extends StatelessWidget {
           _fondoApp(),
           SingleChildScrollView(
             child: Column(
-              children: <Widget>[_titulos(), _botonesRedondeados()],
+              children: <Widget>[
+                // _titulos(), 
+                _botonesRedondeados()],
             ),
           )
         ],
       ),
-      bottomNavigationBar: _buttomNavigationBar(context),
+      // bottomNavigationBar: _buttomNavigationBar(context),
+
+
       /* (
           fixedColor: Colors.pink,
 
@@ -207,16 +211,9 @@ class BotonesPage extends StatelessWidget {
                 ),
                 CircleAvatar(
                   backgroundColor: color,
-                  child: Icon(
-                    icono,
-                    color: Colors.white,
-                    size: 30.0,
+                  // child: Icon(icono,   color: Colors.white,     size: 30.0,     ),    
                   ),
-                ),
-                Text(
-                  texto,
-                  style: TextStyle(color: color),
-                ),
+                // Text(  texto, style: TextStyle(color: color),            ),
                 SizedBox(
                   height: 5.0,
                 )

@@ -4,7 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:app_tarjeta/models/Usuario.dart';
 
 Persona personaFromJson(String str) => Persona.fromJson(json.decode(str));
 
@@ -23,7 +22,7 @@ class Persona {
         this.fechaNacimiento,
         this.municipio,
         this.region,
-        this.usuarioId,
+        // this.usuarioId,
         this.fechaRegistro,
     });
 
@@ -38,7 +37,7 @@ class Persona {
     String fechaNacimiento;
     String municipio;
     String region;
-    String usuarioId;
+    // String usuarioId;
     DateTime fechaRegistro;
 
     factory Persona.fromJson(Map<String, dynamic> json) => Persona(
@@ -53,7 +52,7 @@ class Persona {
         fechaNacimiento: json["fecha_nacimiento"],
         municipio: json["municipio"],
         region: json["region"],
-        usuarioId:json["usuario_id"],
+        // usuarioId:json["usuario_id"],
         fechaRegistro: DateTime.parse(json["fecha_registro"]),
     );
 
@@ -69,7 +68,7 @@ class Persona {
         "fecha_nacimiento": fechaNacimiento,
         "municipio": municipio,
         "region": region,
-        "usuario_id": usuarioId,
+        // "usuario_id": usuarioId,
         "fecha_registro": fechaRegistro.toIso8601String(),
     };
 }

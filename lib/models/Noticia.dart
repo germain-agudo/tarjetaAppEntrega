@@ -16,7 +16,7 @@ class Noticia {
     String subtitulo;
     String descripcion;
     // String usuario;
-    dynamic usuario;
+    Usuario usuario;
 
     DateTime fechaRegistro;
     DateTime fechaEliminacion;

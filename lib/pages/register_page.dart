@@ -160,7 +160,43 @@ class __FormState extends State<_Form> {
                     final registroOk = await authService.register(   phoneCtrl.text.trim(),  emailCtrl.text.trim(),  passCtrl.text.trim(), roleService.role);
                     if (registroOk == true) {
                      
+                      
                       Navigator.pushReplacementNamed(context, 'botones');
+  
+
+
+     switch (roleService.role) {
+        case 'USER_ROLE':
+      // mostrarAlerta(context, 'user', 'Para mejorar su experiencia es necesario que ');          
+  Navigator.pushReplacementNamed(context, 'registerPerson'); 
+  // Navigator.pushReplacementNamed(context, 'registerExternal'); 
+
+          
+          break;
+        case 'ADMIN_ROLE':
+  Navigator.pushReplacementNamed(context, 'registerPerson'); 
+
+      // mostrarAlerta(context, 'admin', 'Para mejorar su experiencia es necesario que ');          
+          
+          break;
+        case 'EXTERNO_ROLE':
+
+      // mostrarAlerta(context, 'externo', 'Para mejorar su experiencia es necesario que ');          
+  Navigator.pushReplacementNamed(context, 'registerExternal'); 
+        
+          break;
+
+        default:
+      // mostrarAlerta(context, usuario.rol, 'datos incompletos');          
+
+
+
+      }
+
+
+
+
+
                     } else {
                       mostrarAlerta(context, 'registro incorrecto', registroOk);
                     }

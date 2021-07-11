@@ -26,6 +26,7 @@ bool get autenticando => this._autenticando;
 
 set autenticando(bool valor) {
     this._autenticando = valor;
+
     notifyListeners(); // Notifica a todos los que esten escuhando la propiedad _autemticando para que se redibuje
   }
 
@@ -128,18 +129,24 @@ set autenticando(bool valor) {
 //Validar el status
     print(resp.body);
 
-    this.autenticando = false;
+    this.autenticando = true;
 
     if (resp.statusCode == 200) {
       final loginResponse = loginResponseFromJson(resp.body); //el usuario nuevo
       this.usuario = loginResponse.usuario;//lo instanciamos
       //Guardar Token en lugar seguro
       await this._guardarToken(loginResponse.token);//nueva vida al token
+
+      autenticando= false;
       return true;
     } else {
       this.logout();
+      autenticando= false;
+
       return false;
     }
+
+
   }
 
 

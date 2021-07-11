@@ -190,7 +190,8 @@ AuthService authService;
                                     authService.usuario.id
                                     );
                                   if (registroOk==true) {
-                                      Navigator.pushReplacementNamed(context, 'botones');
+                                      // Navigator.pushReplacementNamed(context, 'botones');
+                                      Navigator.pushReplacementNamed(context, 'loading');
                                   } else {
                                     mostrarAlerta(context, 'Registro incorrecto', registroOk);
                                   }

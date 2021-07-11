@@ -19,7 +19,7 @@ class DrawerWidger extends StatelessWidget {
     );
 
 return Drawer(
-  
+  // elevation: 5,
   child: Container(
     // color: Components.generalBackgroundColor,
     child: Column(
@@ -58,7 +58,8 @@ return Drawer(
           title: Text('Salir'),
           trailing:  Icon(Icons.chevron_right, color: Colors.blue,),
           onTap: (){
-
+                       Navigator.pushReplacementNamed(context, 'login');
+            AuthService.deleteToken();
           },
         )
       ],

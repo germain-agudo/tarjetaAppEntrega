@@ -16,5 +16,13 @@ class Components {
   
   static Color tableBackground = Color(0xFFF3DBDB);
 
+
+
+
+   static Color fondo = Color(0xffF2F2F2);
+   static Color segundoFondo = Color(0xffEAE6CA);
+
+
+
 }
 

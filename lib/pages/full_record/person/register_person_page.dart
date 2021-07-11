@@ -237,6 +237,7 @@ class _RegisterPersonPageState extends State<RegisterPersonPage> {
         // String formattedDate = DateFormat('DD/MM/yyyy - KK:mm').format(now);
 
         // DateTime now = DateTime.now();
+        
         // String formattedDate = DateFormat('DD/MM/yyyy - KK:mm').format(now);
         // print(formattedDate);
 
@@ -317,7 +318,8 @@ class _RegisterPersonPageState extends State<RegisterPersonPage> {
                                     authService.usuario.id
                                     );
                                   if (registroOk == true) {
-                                    Navigator.pushReplacementNamed(context, 'botones');
+                                    // Navigator.pushReplacementNamed(context, 'botones');
+                                    Navigator.pushReplacementNamed(context, 'loading');
                                   } else {
                                     // print(registroOk);
                                     mostrarAlerta(context, 'Registro incorrecto', registroOk);

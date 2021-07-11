@@ -19,6 +19,7 @@ class ListaOpcionesDrawer extends StatelessWidget {
         title: Text(pageRoutes[i].titulo),
         trailing: Icon(Icons.chevron_right, color: Colors.blue,),
         onTap: (){
+          Navigator.pop(context);
           Navigator.push(context,MaterialPageRoute(builder: (context)=>pageRoutes[i].page ));
             // Navigator.pushReplacementNamed(context, routeName)
         },

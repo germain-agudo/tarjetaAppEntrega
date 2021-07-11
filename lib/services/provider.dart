@@ -1,3 +1,5 @@
+import 'package:app_tarjeta/bloc/imagenes_bloc.dart';
+import 'package:app_tarjeta/bloc/participantes_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_tarjeta/bloc/noticias_bloc.dart';
@@ -9,7 +11,8 @@ class Providers extends InheritedWidget{
 
 // Bloc de las noticias
 final _noticiasBloc = new NoticiasBloc(); 
-
+final _participantesBloc = new ParticipantesBloc(); 
+final _imagenesNoticiaBloc = new ImagenesBloc();
 
 
 
@@ -39,6 +42,14 @@ static Providers _instancia;
 
   static NoticiasBloc noticiasBloc(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<Providers>()._noticiasBloc;
+  }
+
+  static ParticipantesBloc participantesBloc(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Providers>()._participantesBloc;
+  }
+
+  static ImagenesBloc imagenesNoticia(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Providers>()._imagenesNoticiaBloc;
   }
 
   

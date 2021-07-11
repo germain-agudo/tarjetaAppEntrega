@@ -1,8 +1,6 @@
 
 // import 'package:app_tarjeta/helpers/mostrar_alerta.dart';
 import 'package:app_tarjeta/pages/menu_principal/botones_page.dart';
-import 'package:app_tarjeta/pages/menu_principal/segundo.dart';
-import 'package:app_tarjeta/pages/noticia/noticias_page.dart';
 import 'package:app_tarjeta/pages/scroll_home.dart';
 import 'package:app_tarjeta/services/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -10,26 +8,36 @@ import 'package:provider/provider.dart';
 
 class LoadingPage extends StatelessWidget {
   // const LoadingPage({ Key? key }) : super(key: key);
+   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+
+   
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      //  key: _scaffoldKey,
       body: FutureBuilder(
         future: checkLoginState(context),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                
+              
+        
                 return Center(
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children:<Widget> [
-              Text('LoadingPage...'),
+              Text('Espere...'),
               SizedBox(height: 10.0,),
                  CircularProgressIndicator()
 
             ],
           ),
+
+
+
         );
           },
       
@@ -39,6 +47,8 @@ class LoadingPage extends StatelessWidget {
 
 //ESte future va a hacer la validacion
 Future checkLoginState(BuildContext context)async{
+try {
+  
 final authService = Provider.of<AuthService>(context, listen: false);
 
 final autenticado = await authService.isLoggedIn();
@@ -87,15 +97,26 @@ Navigator.pushReplacement(
 
 
   }else{
+
+
   Navigator.pushReplacement(
     context, 
     PageRouteBuilder(
-      // pageBuilder:( _,__,___)=>BotonesPage(),
+         pageBuilder:( _,__,___)=>BotonesPage(),
       // pageBuilder:( _,__,___)=>SegundoPage(),
-      pageBuilder:( _,__,___)=>NoticiasPage(),
+      // pageBuilder:( _,__,___)=>NoticiasPage(),
       transitionDuration: Duration(milliseconds: 0)
     )
   );
+
+//  Navigator.pushReplacement(
+//       context, 
+//       PageRouteBuilder(
+//         pageBuilder: (context, __,___) => SegundoPage(),
+//         transitionDuration: Duration(seconds: 0),
+//     ),
+// );
+
 }
 
 
@@ -112,7 +133,18 @@ Navigator.pushReplacement(
       transitionDuration: Duration(milliseconds: 0)
     )
   );
+
+
+
+
+
 }
+
+
+} catch (e) {
+}
+
+
 }
 
 }

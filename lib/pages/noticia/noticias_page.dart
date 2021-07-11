@@ -1,4 +1,5 @@
 import 'package:app_tarjeta/models/Noticia.dart';
+
 // import 'package:app_tarjeta/models/response/NoticiaResponse.dart';
 // import 'package:app_tarjeta/services/noticia_service.dart';
 import 'package:app_tarjeta/services/provider.dart';
@@ -28,6 +29,17 @@ noticiasBloc.cargarNoticias();
       floatingActionButton: _crearBoton(context),
     );
   }
+
+
+
+
+
+
+
+
+
+
+
 
 Widget _crearListado(NoticiasBloc noticiasBloc){
 
@@ -79,6 +91,8 @@ return StreamBuilder(
 }
 
 Widget _crearItem(BuildContext context,NoticiasBloc noticiasBloc ,Noticia noticia){
+  bool cargarImagen= true;
+  
   return Dismissible(
     key: UniqueKey(),
     background: Container(
@@ -105,7 +119,10 @@ Widget _crearItem(BuildContext context,NoticiasBloc noticiasBloc ,Noticia notici
           ( noticia.img == null)
               ? Image(image: AssetImage('assets/no-image.png'))
               : FadeInImage(
-                placeholder: AssetImage('assets/jar-loading.gif'), 
+                placeholder:   
+                AssetImage('assets/jar-loading.gif'),
+                fadeOutDuration: Duration(milliseconds: 12),
+                 
                 image: NetworkImage(noticia.img),
                 height: 300.0,
                 width: double.infinity,
@@ -115,7 +132,8 @@ Widget _crearItem(BuildContext context,NoticiasBloc noticiasBloc ,Noticia notici
           title:  Text('${ noticia.titulo} '),
           subtitle: Text(noticia.subtitulo),
           // onTap: ()=> Navigator.pushNamed(context, 'noticia', arguments: noticia).then((value) { setState(() {  });}),
-          onTap: ()=> Navigator.pushNamed(context, 'detalleNoticia', arguments: noticia).then((value) { setState(() {  });}),
+          onTap: ()=> Navigator.pushNamed(context, 'detalleNoticia', arguments: noticia)
+          .then((value) { setState(() {  });}),
     ),
         ],
       ),
