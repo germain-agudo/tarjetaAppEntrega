@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:app_tarjeta/global/components.dart';
 import 'package:app_tarjeta/models/Noticia.dart';
 import 'package:app_tarjeta/services/provider.dart';
+import 'package:app_tarjeta/widgets/noticia/input_form.dart';
 // import 'package:app_tarjeta/services/noticia_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 // import 'package:app_tarjeta/utils/utils.dart' as utils;
 class AgregarNoticiaPage extends StatefulWidget {
   // const NoticiaPage({ Key? key }) : super(key: key);
@@ -42,6 +45,7 @@ NoticiasBloc noticiasBloc;
 
 //   }
     return Scaffold(
+backgroundColor: Components.generalBackgroundColor,
       key:  scaffoldKey,
       appBar: AppBar(
         title: Text('Noticia'),
@@ -59,6 +63,7 @@ NoticiasBloc noticiasBloc;
       ),
 
       body: SingleChildScrollView(
+
         physics: BouncingScrollPhysics(),
 
      
@@ -67,10 +72,13 @@ NoticiasBloc noticiasBloc;
         Container(
           padding: EdgeInsets.all(15.0),
           child: Form(
+            
             key:  formkeyAgregarNoticia,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _mostrarFoto(),
+                SizedBox(height: 20,  ),
                 _crearTitulo(),
                 _crearSubtitulo(),
                 _crearDescripcion(),
@@ -85,71 +93,130 @@ NoticiasBloc noticiasBloc;
   }
 
 Widget _crearTitulo(){
-  return TextFormField(
-    initialValue: noticia.titulo,
-    textCapitalization: TextCapitalization.sentences,
-    decoration: InputDecoration(
-      labelText: 'Titulo'
-    ),
-    onSaved: (value)=>noticia.titulo=value,
+  // return Container(
+  //   width: double.infinity,
+  //     padding: EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20), //Esto es para que no se pegue al finalde mi margen
 
-    validator: (value){
-      if (value.length<3) {
-        return 'Ingrese el titulo';//regeresa el error
-      } else {
-        return null;//pasa sin problemas
-      }
-    },
-  ); 
+  //     margin: EdgeInsets.only(bottom: 20), //para hacer una separacion
+  //     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30), boxShadow: <BoxShadow>[
+  //       BoxShadow(
+  //           color: Colors.black.withOpacity(0.05), // color con opacidad,
+  //           offset: Offset(0, 5), //Para la direccion se la sombra
+  //           blurRadius: 5)
+  //     ]),
+  //   child: TextFormField(
+
+  //     initialValue: noticia.titulo,
+  //     textCapitalization: TextCapitalization.sentences,
+  //     decoration: InputDecoration(
+  //           prefixIcon: Icon(Icons.title_outlined),
+
+  //       labelText: 'Titulo',
+  //       border: InputBorder.none,
+  //           // hintText: 'titulo',
+
+  //     ),
+  //     onSaved: (value)=>noticia.titulo=value,
+
+  //     validator: (value){
+  //       if (value.length<3) {
+  //         return 'Ingrese el titulo';//regeresa el error
+  //       } else {
+  //         return null;//pasa sin problemas
+  //       }
+  //     },
+  //   ),
+  // );
+
+return InputFormNoticia(
+  icon: Icon(Icons.title_outlined),
+  initialValue: noticia.titulo, 
+  onSaved: (value)=>noticia.titulo=value, 
+  validator:  (value){
+        if (value.length<3) {
+          return 'Ingrese el titulo';//regeresa el error
+        } else {
+          return null;//pasa sin problemas
+        }
+      },
+  );
+
+
 }
 
 Widget _crearSubtitulo(){
 
-  return TextFormField(
-  
-    // keyboardType: TextInputType.numberWithOptions(decimal: true),
-    // validator: ( value){
-      //  if ( utils.isNumeric(value) ) { return null;
-          // }else{ return 'solo numeros';}
-    // },
-    // onSaved: (value)=> noticia.descripcion= double.parse(value),
+  // return TextFormField(
+  //     // keyboardType: TextInputType.numberWithOptions(decimal: true),
+  //   // validator: ( value){
+  //     //  if ( utils.isNumeric(value) ) { return null;
+  //         // }else{ return 'solo numeros';}
+  //   // },
+  //   // onSaved: (value)=> noticia.descripcion= double.parse(value),
+  //   initialValue: noticia.subtitulo,
+  //   textCapitalization: TextCapitalization.sentences,
+  //   decoration: InputDecoration(
+  //     labelText: 'Subtitulo'
+  //   ),
+  //     onSaved: (value)=>noticia.subtitulo = value,
+  //    validator: (value){
+  //     if (value.length<3) {
+  //       return 'Ingrese el Subtitulo';//regeresa el error
+  //     } else {
+  //       return null;//pasa sin problemas
+  //     }
+  //   },
+  // );
 
-    initialValue: noticia.subtitulo,
 
-    textCapitalization: TextCapitalization.sentences,
-    decoration: InputDecoration(
-      labelText: 'Subtitulo'
-    ),
+return InputFormNoticia(
+  icon: Icon(Icons.subtitles_outlined),
 
-      onSaved: (value)=>noticia.subtitulo = value,
-     validator: (value){
+  initialValue: noticia.subtitulo, 
+  onSaved: (value)=>noticia.subtitulo = value, 
+  validator: (value){
       if (value.length<3) {
         return 'Ingrese el Subtitulo';//regeresa el error
       } else {
         return null;//pasa sin problemas
       }
     },
+  
   );
+
+
 }
 
 Widget _crearDescripcion(){ 
-  return TextFormField(
-    initialValue: noticia.descripcion,
+  // return TextFormField(
+  //   initialValue: noticia.descripcion,
+  //   textCapitalization: TextCapitalization.sentences,
+  //   decoration: InputDecoration(
+  //     labelText: 'Descripcion'
+  //   ),
+  //     onSaved: (value)=>noticia.descripcion=value,
+  //    validator: (value){
+  //     if (value.length<3) {
+  //       return 'Ingrese la descripción';//regeresa el error
+  //     } else {
+  //       return null;//pasa sin problemas
+  //     }
+  //   },
+  // );
 
-    textCapitalization: TextCapitalization.sentences,
-    decoration: InputDecoration(
-      labelText: 'Descripcion'
-    ),
+return InputFormNoticia(
+  icon: Icon(Icons.description_outlined),
 
-      onSaved: (value)=>noticia.descripcion=value,
-
-     validator: (value){
+  initialValue: noticia.descripcion, 
+  onSaved: (value)=>noticia.descripcion=value, 
+  validator: (value){
       if (value.length<3) {
         return 'Ingrese la descripción';//regeresa el error
       } else {
         return null;//pasa sin problemas
       }
     },
+  
   );
 }
 
@@ -161,7 +228,7 @@ Widget _crearBoton(){
   return ElevatedButton.icon(
     onPressed: (_guardando) ?null : _submit, 
     icon: Icon(Icons.save), 
-    label: Text('Save'),
+    label: Text('Aceptar'),
     style: ButtonStyle(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(

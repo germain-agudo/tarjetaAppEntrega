@@ -354,7 +354,7 @@ Widget _crearImagenesRedes (List<Red> red,BuildContext context){
         pageSnapping: true,
         controller: PageController(
           viewportFraction: 0.6,
-          initialPage: 1
+          initialPage: 0
         ),
         itemCount: red.length,
 

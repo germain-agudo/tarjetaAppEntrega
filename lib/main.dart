@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
       // statusBarColor: Color(0xffF2F2F2)
       ));
+
+
+      
     //   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     //     systemNavigationBarColor: Colors.white, // navigation bar color
     //     statusBarColor: Colors.transparent, // status bar color

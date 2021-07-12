@@ -31,7 +31,9 @@ class LoadingPage extends StatelessWidget {
             children:<Widget> [
               Text('Espere...'),
               SizedBox(height: 10.0,),
-                 CircularProgressIndicator()
+                 CircularProgressIndicator(),
+                                Image.asset('assets/gif/loading-inicio.gif')
+
 
             ],
           ),
