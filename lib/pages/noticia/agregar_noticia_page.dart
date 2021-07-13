@@ -6,6 +6,7 @@ import 'package:app_tarjeta/services/provider.dart';
 import 'package:app_tarjeta/widgets/noticia/input_form.dart';
 // import 'package:app_tarjeta/services/noticia_service.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 // import 'package:app_tarjeta/utils/utils.dart' as utils;
@@ -49,16 +50,26 @@ backgroundColor: Components.generalBackgroundColor,
       key:  scaffoldKey,
       appBar: AppBar(
         title: Text('Noticia'),
-        backgroundColor: Colors.red[400],
+        backgroundColor: Colors.blue,
+        
         actions: <Widget>[
+
           IconButton(
-            icon: Icon(Icons.photo_size_select_actual ),
+            // icon:  FaIcon(
+              // FontAwesomeIcons.solidImage,
+              // size: 35,
+            // ),
+icon: Icon(Icons.image_rounded, size: 38,),
+
             onPressed:(){ _seleccionarFoto();}, 
           ),
-          IconButton(
-            icon: Icon(Icons.camera_alt ),
-            onPressed: _tomarFoto, 
-          ),
+          IconButton(   
+              icon:  FaIcon(
+              FontAwesomeIcons.cameraRetro,
+              // color: Components.generalBackgroundColor.withOpacity(0.9),
+              size: 32,
+            ),
+            onPressed: _tomarFoto,         ),
         ],
       ),
 
@@ -130,11 +141,12 @@ Widget _crearTitulo(){
 
 return InputFormNoticia(
   icon: Icon(Icons.title_outlined),
+  text: 'Título',
   initialValue: noticia.titulo, 
   onSaved: (value)=>noticia.titulo=value, 
   validator:  (value){
         if (value.length<3) {
-          return 'Ingrese el titulo';//regeresa el error
+          return 'Ingrese el título';//regeresa el error
         } else {
           return null;//pasa sin problemas
         }
@@ -171,12 +183,13 @@ Widget _crearSubtitulo(){
 
 return InputFormNoticia(
   icon: Icon(Icons.subtitles_outlined),
+  text: 'Subtítulo',
 
   initialValue: noticia.subtitulo, 
   onSaved: (value)=>noticia.subtitulo = value, 
   validator: (value){
       if (value.length<3) {
-        return 'Ingrese el Subtitulo';//regeresa el error
+        return 'Ingrese el Subtítulo';//regeresa el error
       } else {
         return null;//pasa sin problemas
       }
@@ -206,6 +219,7 @@ Widget _crearDescripcion(){
 
 return InputFormNoticia(
   icon: Icon(Icons.description_outlined),
+  text: 'Descripción',
 
   initialValue: noticia.descripcion, 
   onSaved: (value)=>noticia.descripcion=value, 

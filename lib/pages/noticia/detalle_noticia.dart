@@ -75,7 +75,26 @@ class _DetalleNoticiaState extends State<DetalleNoticia> {
               )
             ]))
           ],
-        ));
+        ),
+floatingActionButton:_crearBoton(context) ,
+        
+        
+        )  ;
+  }
+
+  _crearBoton(BuildContext context){
+    return FloatingActionButton(
+      backgroundColor: Colors.red[700],
+      child:  Icon(Icons.edit),
+          onPressed: ()=> Navigator.pushNamed(context, 'noticia', arguments: noticia).then((value) { setState(() {  });}),
+
+      // onPressed:()=>Navigator.pushNamed(context, 'noticia')
+      // .then((value){setState(() {
+        
+      // });}),
+       );
+
+
   }
 
 // Widget _crearListado(ParticipantesBloc participantesBloc){
@@ -508,30 +527,42 @@ class _CrearAppBar extends StatelessWidget {
           collapseMode: CollapseMode.pin,
           centerTitle: true,
           // title:   SafeArea(child: Text('desliza')),
-          title: Text(
-            noticia.titulo,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              letterSpacing: 2, 
-              // height: 0.5, 
-              color: Colors.white, 
-              fontSize: 25.0,
+          title: 
+//           Column(
+//             children: [
+//               Expanded(child: Container()),
+// Center(child: Text('data')),
+// Center(child: Text('dataxfd')),
+//             ]),
 
-                // fontWeight: FontWeight.w400
-                shadows: [
-                  Shadow(
-                    offset: Offset(1.0, 1.0),
-                    blurRadius: 3.0,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                  Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 8.0,
+
+              Text(
+                noticia.titulo,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  letterSpacing: 2, 
+                  // height: 0.5, 
+                  color: Colors.white, 
+                  fontSize: 25.0,
+
+                    // fontWeight: FontWeight.w400
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      Shadow(
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 8.0,
 // color: Color.fromARGB(125, 0, 0, 255),
-                      color: Colors.black),
-                ]),
-          ),
+                          color: Colors.black),
+                    ]),
+              ),
+  
+            
+          
           background: Stack(
             children: <Widget>[
               Container(
@@ -540,9 +571,9 @@ class _CrearAppBar extends StatelessWidget {
               Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: new BoxDecoration(
-                  color: Components.generalBackgroundColor,
+                  // color: Components.generalBackgroundColor,
                   // boxShadow: [new BoxShadow(blurRadius: 1.0)],
-                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(40.0)),
+                  // borderRadius: BorderRadius.vertical(bottom: Radius.circular(40.0)),
                 ),
                 child: (noticia.img == null)
 // ShaderMask(
@@ -613,6 +644,55 @@ class _CrearAppBar extends StatelessWidget {
                         ),
                       ),
               ),
+
+
+
+Center(
+  child:   Container(
+    margin: EdgeInsets.all(40),
+                  clipBehavior: Clip.hardEdge,
+                  decoration: new BoxDecoration(
+                    // color: Components.generalBackgroundColor,
+                    // boxShadow: [new BoxShadow(blurRadius: 1.0)],
+                    // borderRadius: BorderRadius.vertical(bottom: Radius.circular(40.0)),
+                  ),
+                  child: (noticia.img == null)
+  
+                      ? Image(
+                          image: AssetImage('assets/logoINJEO.png'),
+                          fit: BoxFit.contain,
+                          height: double.infinity,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                        )
+                      :
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute<void>(
+                              builder: (BuildContext context) {
+                                return ViewImgeWidget(img: noticia.img);
+                              },
+                            ));
+  
+                          },
+  
+                          child: FadeInImage(
+                            
+                            placeholder: AssetImage('assets/loading.gif'),
+                            image: NetworkImage(noticia.img),
+                            height: double.infinity,
+                            width: double.infinity,
+                            fadeOutDuration: Duration(milliseconds: 12),
+                            fit: BoxFit.fill,
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                ),
+),
+
+
+
+
             ],
           )),
     );
