@@ -29,9 +29,9 @@ class LoadingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children:<Widget> [
-              Text('Espere...'),
-              SizedBox(height: 10.0,),
-                 CircularProgressIndicator(),
+              // Text('Espere...'),
+              // SizedBox(height: 10.0,),
+              //    CircularProgressIndicator(),
                                 Image.asset('assets/gif/loading-inicio.gif')
 
 

@@ -199,8 +199,8 @@ class _CrearImagenesNoticias extends StatelessWidget {
       // width: double.infinity,
       // height: 500.0,
 
-      // width: size.height *0.99,
       // height: size.height *0.35,
+      // width: size.width *0.75,
       width: 600,
       height: 300,
 
@@ -213,12 +213,13 @@ class _CrearImagenesNoticias extends StatelessWidget {
           // return _imagenNoticiaTarjeta(imagenes[index], context);
 
           return Container(
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
             child: Card(
-              elevation: 1,
+
+              elevation: 5,
               shadowColor: Colors.black,
-
-
+            
+            
               // color: Colors.black,
               // shadowColor: Colors.black,
               // semanticContainer: false,
@@ -228,14 +229,17 @@ class _CrearImagenesNoticias extends StatelessWidget {
                 // fit: BoxFit.scaleDown,
                 fit: BoxFit.fill,
                 // alignment: Alignment.center,
-                child: FadeInImage(
-                  placeholder: AssetImage('assets/jar-loading.gif'),
-                  image: NetworkImage(imagenes[index].img),
-                    
-                  // height: double.infinity,
-                  // width: double.infinity,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 40, 0, 40),
+                  child: FadeInImage(
+                    placeholder: AssetImage('assets/jar-loading.gif'),
+                    image: NetworkImage(imagenes[index].img),
+                      
+                    // height: double.infinity,
+                    // width: double.infinity,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                  ),
                 ),
               ),
             ),
@@ -401,25 +405,49 @@ class _CrearParticipantes extends StatelessWidget {
             padding: EdgeInsets.all(20),
             width: double.infinity,
             height: 130,
-            child: CircleAvatar(
-              child: (participante.img == null)
-                  ? Text(
-                      participante.nombre.substring(0, 2),
-                      style: _style,
-                    )
-                  : AspectRatio(
-                      aspectRatio: 1 / 1,
-                      child: ClipOval(
-                        child: FadeInImage(
-                          placeholder: AssetImage('assets/jar-loading.gif'),
-                          image: NetworkImage(participante.img),
-                          // height: double.infinity,
-                          // width: double.infinity,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center,
+
+            child: Container(
+            // padding: EdgeInsets.all(3),
+              
+          decoration: BoxDecoration(
+            
+                shape: BoxShape.circle,
+                // color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 1.0,
+                      offset: Offset(3.0, 3.0),
+                      spreadRadius: 1.0)
+                ],
+              ),
+          
+          
+          
+          
+              child: CircleAvatar(
+          
+                child: (participante.img == null)
+                    ? Text(
+                        participante.nombre.substring(0, 2),
+                        style: _style,
+                      )
+                    : AspectRatio(
+                        aspectRatio: 1 / 1,
+                        child: ClipOval(
+          
+                          child: FadeInImage(
+          
+                            placeholder: AssetImage('assets/jar-loading.gif'),
+                            image: NetworkImage(participante.img),
+                            // height: double.infinity,
+                            // width: double.infinity,
+                            fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                          ),
                         ),
                       ),
-                    ),
+              ),
             ),
           ),
 
@@ -488,6 +516,7 @@ class _CrearAppBar extends StatelessWidget {
       // preferredSize:Size.fromHeight(0)
       // ),
 
+centerTitle: true,
       automaticallyImplyLeading: false,
       leading:
 // BackButton(color: Colors.black,) ,
@@ -506,7 +535,7 @@ class _CrearAppBar extends StatelessWidget {
 
       // title: Center(child: Text('Sliver AppBar')),
 
-      elevation: 4.0,
+      elevation: 8.0,
       backgroundColor: Colors.blue[300],
       // foregroundColor: Colors.transparent,
       // shadowColor: Colors.transparent,
@@ -519,47 +548,69 @@ class _CrearAppBar extends StatelessWidget {
 
       // backgroundColor: Components.generalBackgroundColor,
       // backgroundColor: Color.fromRGBO(250, 31, 38, 0.85),
-      expandedHeight: size.height * 0.40,
+      // expandedHeight: size.height * 0.45,
+      expandedHeight: 300,
       // expandedHeight: 250,
       floating: false,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
-          collapseMode: CollapseMode.pin,
-          centerTitle: true,
+          collapseMode: CollapseMode.parallax,
+//           centerTitle: true,
+// title: 
+//   SizedBox(
+//                 // height: 100,
+//                 width: 200,
+//                 child: Text(
+//                   noticia.subtitulo+noticia.subtitulo,
+//                   // style: Theme.of(context).textTheme.headline6,
+//                    style: Theme.of(context).textTheme.bodyText2,
+//                   overflow: TextOverflow.ellipsis,
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+
+
+
+
+
           // title:   SafeArea(child: Text('desliza')),
-          title: 
-//           Column(
-//             children: [
-//               Expanded(child: Container()),
-// Center(child: Text('data')),
-// Center(child: Text('dataxfd')),
-//             ]),
+//           title: 
+// //           Column(
+// //             children: [
+// //               Expanded(child: Container()),
+// // Center(child: Text('data')),
+// // Center(child: Text('dataxfd')),
+// //             ]),
 
 
-              Text(
-                noticia.titulo,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  letterSpacing: 2, 
-                  // height: 0.5, 
-                  color: Colors.white, 
-                  fontSize: 25.0,
+//               Text(
+//                 noticia.subtitulo+noticia.subtitulo,
+//                 overflow: TextOverflow.ellipsis,
+//                 // maxLines: 1,
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   letterSpacing: 2, 
+//                   // height: 0.5,
 
-                    // fontWeight: FontWeight.w400
-                    shadows: [
-                      Shadow(
-                        offset: Offset(1.0, 1.0),
-                        blurRadius: 3.0,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                      Shadow(
-                          offset: Offset(1.0, 1.0),
-                          blurRadius: 8.0,
-// color: Color.fromARGB(125, 0, 0, 255),
-                          color: Colors.black),
-                    ]),
-              ),
+
+//                   color: Colors.white, 
+//                   // fontSize: 15.0,
+//                   fontSize: 25.0,
+
+//                     // fontWeight: FontWeight.w400
+//                     shadows: [
+//                       Shadow(
+//                         offset: Offset(1.0, 1.0),
+//                         blurRadius: 3.0,
+//                         color: Color.fromARGB(255, 0, 0, 0),
+//                       ),
+//                       Shadow(
+//                           offset: Offset(1.0, 1.0),
+//                           blurRadius: 8.0,
+// // color: Color.fromARGB(125, 0, 0, 255),
+//                           color: Colors.black),
+//                     ]),
+//               ),
   
             
           
@@ -618,10 +669,12 @@ class _CrearAppBar extends StatelessWidget {
                         child: ShaderMask(
                           shaderCallback: (Rect bounds) {
                             return LinearGradient(colors: [
-                              Colors.blueGrey.withOpacity(0.9),
-                              Colors.blueGrey[900].withOpacity(0.2),
-                              Colors.blueGrey[900].withOpacity(0.5),
-                              // Colors.transparent,
+                              // Colors.blueGrey.withOpacity(0.9),
+                              // Colors.blueGrey[900].withOpacity(0.2),
+                              // Colors.blueGrey[900].withOpacity(0.5),
+                              Colors.transparent,
+                              Colors.transparent,
+
                             ]).createShader(bounds);
                           },
                           blendMode: BlendMode.color,
@@ -650,12 +703,7 @@ class _CrearAppBar extends StatelessWidget {
 Center(
   child:   Container(
     margin: EdgeInsets.all(40),
-                  clipBehavior: Clip.hardEdge,
-                  decoration: new BoxDecoration(
-                    // color: Components.generalBackgroundColor,
-                    // boxShadow: [new BoxShadow(blurRadius: 1.0)],
-                    // borderRadius: BorderRadius.vertical(bottom: Radius.circular(40.0)),
-                  ),
+  
                   child: (noticia.img == null)
   
                       ? Image(
@@ -676,15 +724,23 @@ Center(
   
                           },
   
-                          child: FadeInImage(
-                            
-                            placeholder: AssetImage('assets/loading.gif'),
-                            image: NetworkImage(noticia.img),
+                          child: Container(
                             height: double.infinity,
                             width: double.infinity,
-                            fadeOutDuration: Duration(milliseconds: 12),
-                            fit: BoxFit.fill,
-                            alignment: Alignment.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: FadeInImage(
+                                
+                                placeholder: AssetImage('assets/loading.gif'),
+                                image: NetworkImage(noticia.img),
+                                // height: double.infinity,
+                                // width: double.infinity,
+                                fadeOutDuration: Duration(milliseconds: 120),
+
+                                // fit: BoxFit.scaleDown,
+                                // alignment: Alignment.center,
+                              ),
+                            ),
                           ),
                         ),
                 ),
@@ -745,17 +801,37 @@ class _NoticiaTitulo extends StatelessWidget {
 // Container( padding: EdgeInsets.fromLTRB(30, 0, 25, 0),  child: Divider(  color: Colors.red, )),
 
 
-              SizedBox(
-                height: 100,
+  SizedBox(
+                height: 50,
                 child: Center(
                   child: Text(
-                    noticia.subtitulo,
+                    noticia.titulo,
                     style: Theme.of(context).textTheme.headline4,
                     // overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                   ),
                 ),
               ),
+
+
+
+
+              SizedBox(
+                height: 50,
+                child: Center(
+                  child: Text(
+                    noticia.subtitulo,
+                    style: Theme.of(context).textTheme.headline5,
+                    // overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            
+
+
+
+
               // Center(
               //   child: Text(
               //     noticia.titulo,

@@ -371,10 +371,10 @@ _procesarImage(ImageSource.camera);
 _procesarImage( ImageSource origin) async{
  final _picker = ImagePicker();
 
-
+///////////////TODO: ESTE ES PARA LA CALIDAD DE LA IMAGEN
     final pickedFile = await _picker.getImage(
       source: origin,
-      maxHeight: 720, maxWidth: 720
+      // maxHeight: 720, maxWidth: 720
 
     );
 
