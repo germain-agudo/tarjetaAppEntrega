@@ -36,7 +36,9 @@ return Drawer(
                           aspectRatio: 1/1,
                           child: ClipOval(
                             child: FadeInImage(
-                                placeholder: AssetImage('assets/gif/loading-inicio.gif'), 
+                                // placeholder: AssetImage('assets/gif/loading-inicio.gif'), 
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                                 image: NetworkImage(usuario.img),
                                 // height: double.infinity,
                                 // width: double.infinity,

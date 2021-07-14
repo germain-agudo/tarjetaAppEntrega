@@ -96,7 +96,7 @@ final Participante participante;
   @override
   Widget build(BuildContext context) {
 
-print(participante.cargo);
+print(participante.id);
 
       return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -256,7 +256,9 @@ Widget _redSocialTerjeta( {@required Red red, @required BuildContext context}){
              aspectRatio: 1/1,
              child: ClipOval(
                child: FadeInImage(
-                   placeholder: AssetImage('assets/jar-loading.gif'), 
+                  //  placeholder: AssetImage('assets/jar-loading.gif'), 
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                    image: NetworkImage(red.img),
                   //  height: double.infinity,
                   //  width: double.infinity,

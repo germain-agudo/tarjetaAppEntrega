@@ -232,7 +232,9 @@ class _CrearImagenesNoticias extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.fromLTRB(0, 40, 0, 40),
                   child: FadeInImage(
-                    placeholder: AssetImage('assets/jar-loading.gif'),
+                    // placeholder: AssetImage('assets/jar-loading.gif'),
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                     image: NetworkImage(imagenes[index].img),
                       
                     // height: double.infinity,
@@ -303,7 +305,9 @@ class _CrearImagenesNoticias extends StatelessWidget {
                       aspectRatio: 1 / 1,
                       child: ClipOval(
                         child: FadeInImage(
-                          placeholder: AssetImage('assets/jar-loading.gif'),
+                          // placeholder: AssetImage('assets/jar-loading.gif'),
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                           image: NetworkImage(imagen.img),
                           // height: double.infinity,
                           // width: double.infinity,
@@ -438,7 +442,11 @@ class _CrearParticipantes extends StatelessWidget {
           
                           child: FadeInImage(
           
-                            placeholder: AssetImage('assets/jar-loading.gif'),
+                            // placeholder: AssetImage('assets/jar-loading.gif'),
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+                         
+
+                            
                             image: NetworkImage(participante.img),
                             // height: double.infinity,
                             // width: double.infinity,
@@ -616,135 +624,123 @@ centerTitle: true,
           
           background: Stack(
             children: <Widget>[
+
+
               Container(
                 color: Components.generalBackgroundColor,
               ),
-              Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: new BoxDecoration(
-                  // color: Components.generalBackgroundColor,
-                  // boxShadow: [new BoxShadow(blurRadius: 1.0)],
-                  // borderRadius: BorderRadius.vertical(bottom: Radius.circular(40.0)),
-                ),
-                child: (noticia.img == null)
-// ShaderMask(
-//                 shaderCallback: (rect){
-//                    return LinearGradient(
-//       begin: Alignment.topCenter,
-//       end: Alignment.bottomCenter,
-//       colors: [Colors.white, Colors.red],
-//     ).createShader(Rect.fromLTRB(10, 20, rect.width, rect.height));
 
-//                 },
-//                 blendMode: BlendMode.dstIn,
-//                 child:
-                    ? Image(
-                        // color: Colors.blueGrey.withOpacity(0.2),
+ (noticia.img ==null || noticia.img.isEmpty)
+ ?Stack(
+children: <Widget>[
+   ImageFiltered(
+    imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 4),
+    child: Image(
+    image: AssetImage('assets/logoINJEO.png'),
+    fit: BoxFit.contain,
+    height: double.infinity,
+    width: double.infinity,
+    alignment: Alignment.center,
+  ),
+  ),
 
-                        image: AssetImage('assets/logoINJEO.png'),
-                        fit: BoxFit.contain,
-                        height: double.infinity,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                      )
-                    :
-                    // : ShaderMask(
-                    //   shaderCallback: (Rect bounds){
-                    //     return LinearGradient(
-                    //       colors: [ //         Color(0xFF704214),          //         Colors.tr,          //         ]
-                    //     ).createShader(bounds);
-                    //   },
-                    //   blendMode: BlendMode.color,
-                    //   child: FadeInImage(
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute<void>(
-                            builder: (BuildContext context) {
-                              return ViewImgeWidget(img: noticia.img);
+Image(
+    image: AssetImage('assets/logoINJEO.png'),
+    fit: BoxFit.contain,
+    height: double.infinity,
+    width: double.infinity,
+    alignment: Alignment.center,
+  )
+
+
+],
+ )
+ :Stack(
+children: <Widget>[
+  ImageFiltered(
+    imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 4),
+    child: FadeInImage(
+        // placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
+        image: NetworkImage(noticia.img),
+        height: double.infinity,
+        width: double.infinity,
+        // fadeInDuration: Duration(microseconds:150),
+        fadeOutDuration: Duration(milliseconds: 150),
+  
+        // fit:BoxFit.fitWidth,
+        fit: BoxFit.cover,
+        // alignment: Alignment.center,
+        alignment: Alignment.center,
+                              ),
+  ),  
+
+
+  Container(
+     margin: EdgeInsets.all(40),
+    child: GestureDetector(
+                            onTap: ()async {
+                              await Navigator.push(context, MaterialPageRoute<void>(
+                                builder: (BuildContext context) {
+                                  return ViewImgeWidget(img: noticia.img);
+                                },                              ));
+    
                             },
-                          ));
-                        },
-                        // color: Colors.blueGrey.withOpacity(0.2),
-
-                        child: ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(colors: [
-                              // Colors.blueGrey.withOpacity(0.9),
-                              // Colors.blueGrey[900].withOpacity(0.2),
-                              // Colors.blueGrey[900].withOpacity(0.5),
-                              Colors.transparent,
-                              Colors.transparent,
-
-                            ]).createShader(bounds);
-                          },
-                          blendMode: BlendMode.color,
-                          child: ImageFiltered(
-                            imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 4),
-                            child: FadeInImage(
-                              placeholder: AssetImage('assets/loading.gif'),
-                              image: NetworkImage(noticia.img),
+    
+                            child: Container(
                               height: double.infinity,
                               width: double.infinity,
-                              // fadeInDuration: Duration(microseconds:150),
-                              fadeOutDuration: Duration(milliseconds: 12),
-
-                              // fit:BoxFit.fitWidth,
-                              fit: BoxFit.cover,
-                              // alignment: Alignment.center,
-                              alignment: Alignment.center,
-                            ),
-                          ),
-                        ),
-                      ),
-              ),
-
-
-
-Center(
-  child:   Container(
-    margin: EdgeInsets.all(40),
-  
-                  child: (noticia.img == null)
-  
-                      ? Image(
-                          image: AssetImage('assets/logoINJEO.png'),
-                          fit: BoxFit.contain,
-                          height: double.infinity,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                        )
-                      :
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute<void>(
-                              builder: (BuildContext context) {
-                                return ViewImgeWidget(img: noticia.img);
-                              },
-                            ));
-  
-                          },
-  
-                          child: Container(
-                            height: double.infinity,
-                            width: double.infinity,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: FadeInImage(
-                                
-                                placeholder: AssetImage('assets/loading.gif'),
-                                image: NetworkImage(noticia.img),
-                                // height: double.infinity,
-                                // width: double.infinity,
-                                fadeOutDuration: Duration(milliseconds: 120),
-
-                                // fit: BoxFit.scaleDown,
-                                // alignment: Alignment.center,
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: FadeInImage(                                  
+                                 placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+                                  image: NetworkImage(noticia.img),
+                                  // height: double.infinity,
+                                  // width: double.infinity,
+                                  fadeOutDuration: Duration(milliseconds: 150),
+                                  // fit: BoxFit.scaleDown,
+                                  // alignment: Alignment.center,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                ),
-),
+  ),
+                
+],
+ )
+
+
+              // ImageFiltered(
+              //   imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 4),
+              //   child:  
+                           
+              //   (noticia.img ==null || noticia.img.isEmpty)
+              //   ?Image(
+              //             image: AssetImage('assets/logoINJEO.png'),
+              //             fit: BoxFit.contain,
+              //             height: double.infinity,
+              //             width: double.infinity,
+              //             alignment: Alignment.center,
+              //           )
+              //   :FadeInImage(
+              //                 placeholder: AssetImage('assets/loading.gif'),
+              //                 image: NetworkImage(noticia.img),
+              //                 height: double.infinity,
+              //                 width: double.infinity,
+              //                 // fadeInDuration: Duration(microseconds:150),
+              //                 fadeOutDuration: Duration(milliseconds: 100),
+
+              //                 // fit:BoxFit.fitWidth,
+              //                 fit: BoxFit.cover,
+              //                 // alignment: Alignment.center,
+              //                 alignment: Alignment.center,
+              //               ),                
+              //   ),
+
+
+
+
 
 
 
@@ -801,17 +797,14 @@ class _NoticiaTitulo extends StatelessWidget {
 // Container( padding: EdgeInsets.fromLTRB(30, 0, 25, 0),  child: Divider(  color: Colors.red, )),
 
 
-  SizedBox(
-                height: 50,
-                child: Center(
-                  child: Text(
-                    noticia.titulo,
-                    style: Theme.of(context).textTheme.headline4,
-                    // overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
+  Center(
+    child: Text(
+      noticia.titulo,
+      style: Theme.of(context).textTheme.headline4,
+      // overflow: TextOverflow.ellipsis,
+      textAlign: TextAlign.center,
+    ),
+  ),
 
 
 
@@ -884,7 +877,6 @@ class _Descripcion extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Text(
               noticia.descripcion,
-              // +noticia.descripcion
               // +noticia.descripcion
               // +noticia.descripcion
               // +noticia.descripcion

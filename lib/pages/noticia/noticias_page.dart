@@ -119,8 +119,14 @@ Widget _crearItem(BuildContext context,NoticiasBloc noticiasBloc ,Noticia notici
           ( noticia.img == null)
               ? Image(image: AssetImage('assets/no-image.png'))
               : FadeInImage(
+        // placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                 placeholder:   
-                AssetImage('assets/jar-loading.gif'),
+                // AssetImage('assets/jar-loading.gif'),
+                AssetImage('assets/gif/injeo-negro.gif', 
+                
+                
+                ),
                 fadeOutDuration: Duration(milliseconds: 12),
                  
                 image: NetworkImage(noticia.img),

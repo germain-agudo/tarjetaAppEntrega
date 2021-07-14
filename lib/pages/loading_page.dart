@@ -32,7 +32,17 @@ class LoadingPage extends StatelessWidget {
               // Text('Espere...'),
               // SizedBox(height: 10.0,),
               //    CircularProgressIndicator(),
-                                Image.asset('assets/gif/loading-inicio.gif')
+                                // Image.asset('assets/gif/loading-inicio.gif')
+                                Image.asset(
+                                  
+                                 'assets/gif/loading-inicio.gif',
+
+        // placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
+                                
+                                
+                                )
+
 
 
             ],

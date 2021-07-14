@@ -52,7 +52,9 @@ final String img;
          width: double.infinity,
          height: double.infinity,
          child:  FadeInImage(
-                               placeholder: AssetImage('assets/jar-loading.gif'), 
+                              //  placeholder: AssetImage('assets/jar-loading.gif'), 
+        placeholder: AssetImage('assets/gif/loading-inicio.gif'),
+
                                image: NetworkImage(img),
                                 
                                // height: double.infinity,
