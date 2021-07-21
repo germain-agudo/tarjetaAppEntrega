@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
-import 'package:app_tarjeta/pages/noticia/noticias_page.dart';
+import 'package:app_tarjeta/pages/noticia/admin/noticias_page.dart';
 // import 'package:flutter/cupertino.dart';
 
 final pageRoutes=<_RouteDrawer>[
